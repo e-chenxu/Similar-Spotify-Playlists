@@ -1,5 +1,5 @@
 # Flask Python Website
-A website using Python and FLask.
+A website using Python and Flask.
 
 ## Description
 
