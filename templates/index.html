@@ -4,6 +4,19 @@
 
 {% endblock %}
 
-{% block body %}
+{% block body_input %}
 <h1>Template</h1>
+<form method="POST">
+  <label for="link">link:</label><br>
+  {%  if spotify_link %}
+    <input type="text" id="link" name="link"><br>
+  {% else %}
+    <input type="text" id="link" name="link" value={{ spotify_link }}><br>
+  {% endif %}
+  <input type="submit" value="Submit">
+</form>
+{% endblock %}
+
+{% block left_column %}
+    <div>{{ spotify_link }}</div>
 {% endblock %}
