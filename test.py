@@ -1,8 +1,7 @@
 import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
 
-sp = spotipy.Spotify(auth_manager=SpotifyClientCredentials(client_id="b4129b58122543428ebab649da44221f",
-                                                           client_secret="a46d14a8794643d982374c80533b837d"))
+sp = spotipy.Spotify(auth_manager=SpotifyClientCredentials())
 
 #results = sp.search(q='weezer', limit=20)
 #for idx, track in enumerate(results['tracks']['items']):
