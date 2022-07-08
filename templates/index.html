@@ -14,5 +14,9 @@
 {% endblock %}
 
 {% block left_column %}
-    <div>{{ spotify_link }}</div>
+    <ul>
+    {% for tracks in track_list %}
+        <li>{{ tracks }}</li>
+    {% endfor %}
+    </ul>
 {% endblock %}
