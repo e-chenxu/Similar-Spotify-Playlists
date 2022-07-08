@@ -5,14 +5,10 @@
 {% endblock %}
 
 {% block body_input %}
-<h1>Template</h1>
-<form method="POST">
+<h1 class="center">Spotify Playlist Finder</h1>
+<form method="POST" class="center">
   <label for="link">link:</label><br>
-  {%  if spotify_link %}
-    <input type="text" id="link" name="link"><br>
-  {% else %}
-    <input type="text" id="link" name="link" value={{ spotify_link }}><br>
-  {% endif %}
+    <input type="text" id="link" name="link" placeholder="link"><br>
   <input type="submit" value="Submit">
 </form>
 {% endblock %}
