@@ -1,2 +1,4 @@
 ###### Requirements without Version Specifiers ######
 flask
+spotipy
+spotipy.oauth2
