@@ -1,5 +1,5 @@
-# Flask Python Website
-A website using Python and Flask.
+# Similar Spotify Playlists
+A website using Python, Flask and Spotify API.
 
 ## Description
 
