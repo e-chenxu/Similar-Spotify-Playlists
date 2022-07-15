@@ -13,7 +13,7 @@ sp = spotipy.Spotify(auth_manager=SpotifyClientCredentials())
 # this will get a list of track and their data in a dictionary
 def get_tracks_from_pl(pl_link) -> list:
     # get playlist id
-    playlist_link = "https://open.spotify.com/playlist/4YXr1VsIVKxOk5xYrZxGlT"
+   # playlist_link = "https://open.spotify.com/playlist/4YXr1VsIVKxOk5xYrZxGlT"
     playlist_id = pl_link.split("/")[-1].split("?")[0]
     results = sp.playlist_items(playlist_id)
     tracks = results['items']

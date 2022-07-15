@@ -6,3 +6,18 @@ body{
 .center{
     text-align: center;
 }
+
+.row {
+    display: flex;
+}
+
+.column {
+    width: 50%;
+    flex: 50%;
+    padding: 10px;
+    overflow-x: auto;
+}
+
+.leftcolumn {
+    background: #FFFFFF;
+}
