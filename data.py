@@ -3,6 +3,7 @@ from spotipy.oauth2 import SpotifyClientCredentials
 import requests
 import urllib
 import pandas as pd
+import random
 from requests_html import HTML
 from requests_html import HTMLSession
 
@@ -10,10 +11,38 @@ from requests_html import HTMLSession
 sp = spotipy.Spotify(auth_manager=SpotifyClientCredentials())
 
 
+# this function will try to find 5 different playlists
+def get_five_playlists(track_list) -> set:
+    # total playlist list that we are returning
+    playlist_list = set()
+    i = 0
+    while i < 10:
+        # THIS SHOULD BE CHANGED LATER
+        # first we get 2 random songs from the track_list
+        random_sample = random.sample(track_list, 2)
+
+        # we then find similar playlists using these random samples
+        temp_playlist = find_similar_playlists(random_sample)
+
+        # append items to the playlist list but make sure to break when its mroe or less than 5
+        for items in temp_playlist:
+            # make sure no duplicates
+            playlist_list.add(items)
+            if len(playlist_list) >= 5:
+                break
+
+        # if not 5, then loop again
+        if len(playlist_list) >= 5:
+            break
+        # make sure no duplicates (turn into set, then list)
+
+    return playlist_list
+
+
 # this will get a list of track and their data in a dictionary
 def get_tracks_from_pl(pl_link) -> list:
     # get playlist id
-   # playlist_link = "https://open.spotify.com/playlist/4YXr1VsIVKxOk5xYrZxGlT"
+    # playlist_link = "https://open.spotify.com/playlist/4YXr1VsIVKxOk5xYrZxGlT"
     playlist_id = pl_link.split("/")[-1].split("?")[0]
     results = sp.playlist_items(playlist_id)
     tracks = results['items']
@@ -48,13 +77,13 @@ def get_playlist_art(pl_link) -> str:
     return items['images'][0]['url']
 
 
-def find_similar_playlists(track_list) -> list:
+def find_similar_playlists(track_list) -> set:
     # we have to first create a string that contains all the track names plus artists in quotes
     total_string = ""
     for x in track_list:
         total_string += '"' + x['Name'] + '"'
         total_string += '"' + x['Artist'] + '"'
-    return get_google_results(total_string)
+    return set(get_google_results(total_string))
 
 
 # google search data functions
