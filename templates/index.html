@@ -6,10 +6,11 @@
 
 {% block body_input %}
 <h1 class="center">Spotify Playlist Finder</h1>
-<form method="POST" class="center">
-  <label for="link">link:</label><br>
-    <input type="text" id="link" name="link" placeholder="link"><br>
-  <input type="submit" value="Submit">
+<form method="POST">
+  <label for="link">Playlist link:</label><br>
+    <div class="center">
+        <input class="" type="text" id="link" name="link" placeholder="e.g. https://open.spotify.com/playlist/37i9dQZEVXbMDoHDwVN2tF"><button class="" type="submit"><i class="fa fa-search"></i></button>
+    </div>
 </form>
 {% endblock %}
 

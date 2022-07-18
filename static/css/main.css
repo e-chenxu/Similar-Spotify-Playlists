@@ -21,3 +21,82 @@ body{
 .leftcolumn {
     background: #FFFFFF;
 }
+
+.inputbox{
+    font-size: 17px;
+    height: 30px;
+    width: 50%;
+}
+
+.submit_button{
+
+}
+
+.submit_body{
+    position: relative;
+    top: -25px;
+    height: 175px;
+    border-bottom: solid black;
+    margin: 50px;
+    text-align: left;
+}
+form {
+    align-items: center;
+    margin: 0 auto;
+}
+
+
+
+
+
+label{
+    text-align: left;
+    position: relative;
+    left: 14%;
+}
+
+img {
+    max-width: 120%;
+    max-height: 120%;
+}
+
+.search_button{
+    width: 30px;
+    height: 30px;
+}
+
+.submit_stuff{
+    width: 70%;
+    height: 30px;
+}
+
+form input[type=text] {
+  padding: 10px;
+  font-size: 17px;
+  border: 1px solid grey;
+  width: 60%;
+  background: #f5f4f4;
+}
+
+form button {
+  width: 10%;
+  padding: 10px;
+  background: #1c63f1;
+  color: white;
+  font-size: 17px;
+  border: 1px solid grey;
+  border-left: none;
+  cursor: pointer;
+
+}
+
+form button:hover {
+  background: #0c57ec;
+}
+
+/* clear content */
+form::after {
+  content: "";
+  clear: both;
+  display: table;
+}

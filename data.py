@@ -119,3 +119,10 @@ def get_google_results(query):
             results.remove(url)
 
     return results
+
+
+def correct_link_check(link):
+    if "open.spotify.com/playlist/" in link:
+        return True
+    else:
+        return False

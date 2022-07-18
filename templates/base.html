@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="{{ url_for('static',filename='css/main.css') }}">
+    <meta charset="UTF-8" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/main.css')}}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     {% block head %}{% endblock %}
 </head>
 <body>
+    <div class="submit_body">
     {% block body_input %}{% endblock %}
+    </div>
     <div class="row">
         <div class="column leftcolumn">
             <h2>Your Playlist</h2>
