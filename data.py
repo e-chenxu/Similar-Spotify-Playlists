@@ -53,11 +53,13 @@ def get_tracks_from_pl(pl_link) -> list:
     # create an list and append the track name, artist, and picture
     track_list = []
     for x in tracks:
+        # if image for album doesnt exist, skip because not a song
+        if not x['track']['album']['images']:
+            continue
         new_dict = {'Name': x['track']['name'],
                     'Artist': x['track']['artists'][0]['name'],
                     'Image': x['track']['album']['images'][2]['url']}
         track_list.append(new_dict)
-    print(track_list)
     return track_list
 
 

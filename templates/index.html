@@ -15,11 +15,21 @@
 {% endblock %}
 
 {% block left_column %}
-    <ul>
+    {% if track_list %}
+        <h2 class="center">Your Playlist</h2>
+    {% endif %}
     {% for tracks in track_list %}
-        <li>{{ tracks }}</li>
+        <div class="track">
+            <img src="{{ tracks['Image'] }}" alt="picture" style="float: left; margin-right: 15px">
+            <p class="page-title">
+                {{ tracks['Name'] }}
+            </p>
+            <p class="subtitle">
+                {{ tracks['Artist'] }}
+            </p>
+        </div>
+
     {% endfor %}
-    </ul>
 {% endblock %}
 
 {% block right_column %}
