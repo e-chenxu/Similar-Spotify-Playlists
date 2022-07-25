@@ -16,9 +16,6 @@ while results['next']:
 
 track_list = []
 for x in tracks:
-    if not x['track']['album']['images']:
-        print("empty array")
-        continue
     new_dict = {'Name': x['track']['name'], 'Artist': x['track']['artists'][0]['name'],
                 'Image': x['track']['album']['images']}
     track_list.append(new_dict)

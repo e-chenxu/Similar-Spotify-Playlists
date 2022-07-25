@@ -12,11 +12,11 @@ sp = spotipy.Spotify(auth_manager=SpotifyClientCredentials())
 
 
 # this function will try to find 5 different playlists
-def get_five_playlists(track_list) -> set:
+def get_five_playlists(track_list) -> list:
     # total playlist list that we are returning
     playlist_list = set()
     i = 0
-    while i < 10:
+    while i < 5:
         # THIS SHOULD BE CHANGED LATER
         # first we get 2 random songs from the track_list
         random_sample = random.sample(track_list, 2)
@@ -25,9 +25,12 @@ def get_five_playlists(track_list) -> set:
         temp_playlist = find_similar_playlists(random_sample)
 
         # append items to the playlist list but make sure to break when its mroe or less than 5
-        for items in temp_playlist:
+        for item in temp_playlist:
+            # make sure correct link
+            if not correct_link_check(item):
+                continue
             # make sure no duplicates
-            playlist_list.add(items)
+            playlist_list.add(item)
             if len(playlist_list) >= 5:
                 break
 
@@ -35,8 +38,15 @@ def get_five_playlists(track_list) -> set:
         if len(playlist_list) >= 5:
             break
         # make sure no duplicates (turn into set, then list)
-
-    return playlist_list
+        i += 1
+    # NOW THAT THERE IS NO DUPLICATES, WE CAN RETURN A LIST OF STATS
+    actual_playlist_list = []
+    for x in playlist_list:
+        new_dict = {'Name': get_playlist_name(x),
+                    'Image': get_playlist_art(x),
+                    'Link': x}
+        actual_playlist_list.append(new_dict)
+    return actual_playlist_list
 
 
 # this will get a list of track and their data in a dictionary

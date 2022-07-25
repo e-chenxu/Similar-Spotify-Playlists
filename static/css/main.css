@@ -126,3 +126,15 @@ form::after {
       color: gray;
         float: left;
     }
+
+.playlist {
+    border: solid black;
+    width: 50%;
+    margin: auto;
+    height: 50px;
+}
+
+       a:link {color: black;}      /* unvisited link */
+       a:visited {color: black;}   /* visited link */
+       a:hover {color: black;}     /* mouse over link */
+       a:active {color: black;}    /* selected link */

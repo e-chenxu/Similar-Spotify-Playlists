@@ -33,5 +33,14 @@
 {% endblock %}
 
 {% block right_column %}
-    <div>{{ playlist_list }}</div>
+    {% if track_list %}
+        <h2 class="center">Found Playlists</h2>
+    {% endif %}
+    {% for playlist in playlist_list %}
+    <div class = "playlist">
+        <img src="{{ playlist['Image'] }}" alt="picture" style="float: left; margin-right: 15px">
+        <p><a href="{{ playlist['Link'] }}">{{ playlist['Name'] }}</a></p>
+    </div>
+    {% endfor %}
+
 {% endblock %}

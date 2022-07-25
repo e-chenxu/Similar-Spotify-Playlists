@@ -19,7 +19,7 @@ def get_source_code(link):
 def get_google_results(query):
     query = urllib.parse.quote_plus(query)
     response = get_source_code("https://www.google.com/search?q==site%3Aopen.spotify.com+" + query)
-
+    print(response)
     # table of any google links
     results = list(response.html.absolute_links)
     google_domains = ('https://www.google.',
