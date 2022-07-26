@@ -39,7 +39,7 @@
     {% for playlist in playlist_list %}
     <div class = "playlist">
         <img src="{{ playlist['Image'] }}" alt="picture" style="float: left; margin-right: 15px">
-        <p><a href="{{ playlist['Link'] }}">{{ playlist['Name'] }}</a></p>
+        <p><a href="{{ playlist['Link'] }}" class="linktext" target="_blank">{{ playlist['Name'] }}</a></p>
     </div>
     {% endfor %}
 

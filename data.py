@@ -2,10 +2,10 @@ import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
 import requests
 import urllib
-import pandas as pd
 import random
 from requests_html import HTML
 from requests_html import HTMLSession
+import sys
 
 # my keys
 sp = spotipy.Spotify(auth_manager=SpotifyClientCredentials())
@@ -16,7 +16,7 @@ def get_five_playlists(track_list) -> list:
     # total playlist list that we are returning
     playlist_list = set()
     i = 0
-    while i < 5:
+    while i < 3:
         # THIS SHOULD BE CHANGED LATER
         # first we get 2 random songs from the track_list
         random_sample = random.sample(track_list, 2)
@@ -42,6 +42,10 @@ def get_five_playlists(track_list) -> list:
     # NOW THAT THERE IS NO DUPLICATES, WE CAN RETURN A LIST OF STATS
     actual_playlist_list = []
     for x in playlist_list:
+        try:
+            get_playlist_name(x)
+        except:
+            print(x, file=sys.stdout)
         new_dict = {'Name': get_playlist_name(x),
                     'Image': get_playlist_art(x),
                     'Link': x}
