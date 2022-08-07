@@ -3,71 +3,10 @@ body{
     font-family: sans-serif;
 }
 
-.center{
-    text-align: center;
-}
-
-.row {
-    display: flex;
-}
-
-.column {
-    width: 50%;
-    flex: 50%;
-    padding: 10px;
-    top: -65px;
-}
-
-.leftcolumn {
-    background: #FFFFFF;
-}
-
-.inputbox{
-    font-size: 17px;
-    height: 30px;
-    width: 50%;
-}
-
-.submit_button{
-
-}
-
-.submit_body{
-    position: relative;
-    top: -25px;
-    height: 175px;
-    border-bottom: solid black;
-    margin: 50px;
-    text-align: left;
-}
+/* this form template is from w3 schools */
 form {
     align-items: center;
     margin: 0 auto;
-}
-
-
-
-
-
-label{
-    text-align: left;
-    position: relative;
-    left: 14%;
-}
-
-img {
-    max-width: 100%;
-    max-height: 100%;
-}
-
-.search_button{
-    width: 30px;
-    height: 30px;
-}
-
-.submit_stuff{
-    width: 70%;
-    height: 30px;
 }
 
 form input[type=text] {
@@ -101,7 +40,68 @@ form::after {
   display: table;
 }
 
-.track{
+label{
+    text-align: left;
+    position: relative;
+    left: 14%;
+}
+
+img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+a {text-decoration: none;}   /* doesn't underline */
+a:link {color: black;}      /* unvisited link */
+a:visited {color: black;}   /* visited link */
+a:hover {color: black;}     /* mouse over link */
+a:active {color: black;}    /* selected link */
+
+.center{
+    text-align: center;
+}
+
+.row {
+    display: flex;
+}
+
+.column {
+    width: 50%;
+    flex: 50%;
+    padding: 10px;
+    top: -65px;
+}
+
+.leftcolumn {
+    background: #FFFFFF;
+}
+
+.inputbox{
+    font-size: 17px;
+    height: 30px;
+    width: 50%;
+}
+
+.submit_body{
+    position: relative;
+    top: -25px;
+    height: 175px;
+    border-bottom: solid black;
+    margin: 50px;
+    text-align: left;
+}
+
+.search_button{
+    width: 30px;
+    height: 30px;
+}
+
+.submit_stuff{
+    width: 70%;
+    height: 30px;
+}
+
+.track {
     border: solid black;
     width: 50%;
     margin: auto;
@@ -109,20 +109,20 @@ form::after {
 }
 
 .page-title {
-       display: block;
-       margin-top: 5px;
-       margin-bottom: .5rem;
-       font-size: 17px;
-       color: #000;
-        white-space: nowrap;
-         overflow: hidden;
-        text-overflow: ellipsis;
+    display: block;
+    margin-top: 5px;
+    margin-bottom: .5rem;
+    font-size: 17px;
+    color: #000;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
     }
     .subtitle {
-      display: block;
-      margin: 0;
-      font-size: 10px;
-      color: gray;
+        display: block;
+        margin: 0;
+        font-size: 10px;
+        color: gray;
         float: left;
     }
 
@@ -133,22 +133,12 @@ form::after {
     margin: auto auto 20px;
     height: 50px;
 }
-        a{
-            text-decoration: none;
-        }
-       a:link {color: black;}      /* unvisited link */
-       a:visited {color: black;}   /* visited link */
-       a:hover {color: black;}     /* mouse over link */
-       a:active {color: black;}    /* selected link */
 
 .linktext{
-    /*float: left;
-    position: absolute;
-    left: 70px;*/
-           display: block;
-       font-size: 17px;
-       color: #000;
-        white-space: nowrap;
-         overflow: hidden;
-        text-overflow: ellipsis;
+    display: block;
+    font-size: 17px;
+    color: #000;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }

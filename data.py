@@ -16,7 +16,7 @@ def get_five_playlists(track_list) -> list:
     # total playlist list that we are returning
     playlist_list = set()
     i = 0
-    while i < 3:
+    while i < 5:
         # THIS SHOULD BE CHANGED LATER
         # first we get 2 random songs from the track_list
         random_sample = random.sample(track_list, 2)
