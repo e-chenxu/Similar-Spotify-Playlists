@@ -16,10 +16,18 @@ def get_five_playlists(track_list) -> list:
     # total playlist list that we are returning
     playlist_list = set()
     i = 0
+    # find playlists with this number of songs
+    song_find_count = 3;
+    # playlist finding algorithm
+
     while i < 5:
         # THIS SHOULD BE CHANGED LATER
-        # first we get 2 random songs from the track_list
-        random_sample = random.sample(track_list, 2)
+        # first we get a variable amoutn of random songs from the track_list
+        # if the track list is too small, then we have to adjust the find count
+        if len(track_list) < song_find_count:
+            song_find_count = len(track_list)
+
+        random_sample = random.sample(track_list, song_find_count)
 
         # we then find similar playlists using these random samples
         temp_playlist = find_similar_playlists(random_sample)
