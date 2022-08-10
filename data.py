@@ -102,16 +102,33 @@ def get_tracks_from_pl(pl_link) -> list:
 def get_playlist_name(pl_link) -> str:
     playlist_id = pl_link.split("/")[-1].split("?")[0]
     results = sp.playlist(playlist_id)
-    items = results
-    return items['name']
+    return results['name']
 
 
 # gets link of playlist image
 def get_playlist_art(pl_link) -> str:
     playlist_id = pl_link.split("/")[-1].split("?")[0]
     results = sp.playlist(playlist_id)
-    items = results
-    return items['images'][0]['url']
+    return results['images'][0]['url']
+
+
+# gets the track count of playlist
+def get_playlist_trackcount(pl_link) -> str:
+    playlist_id = pl_link.split("/")[-1].split("?")[0]
+    results = sp.playlist(playlist_id)
+    return results['tracks']['total']
+
+
+# gets description of playlist
+def get_playlist_description(pl_link) -> str:
+    playlist_id = pl_link.split("/")[-1].split("?")[0]
+    results = sp.playlist(playlist_id)
+    return results['description']
+
+
+# gets song matches of 2 playlists
+def get_song_matches(pl_link1, pl_link2) -> str:
+    return
 
 
 def find_similar_playlists(track_list) -> set:
