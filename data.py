@@ -17,43 +17,56 @@ def get_five_playlists(track_list) -> list:
     playlist_list = set()
     i = 0
     # find playlists with this number of songs
-    song_find_count = 3;
+    song_find_count = 3
     # playlist finding algorithm
 
     while i < 5:
         # THIS SHOULD BE CHANGED LATER
         # first we get a variable amoutn of random songs from the track_list
+
         # if the track list is too small, then we have to adjust the find count
         if len(track_list) < song_find_count:
             song_find_count = len(track_list)
+
+        # always find at least 1, make sure the length is more than 0, also find 1 at end
+        if i == 4 or (song_find_count < 1 and len(track_list) > 0):
+            song_find_count = 1
 
         random_sample = random.sample(track_list, song_find_count)
 
         # we then find similar playlists using these random samples
         temp_playlist = find_similar_playlists(random_sample)
+        print(temp_playlist, file=sys.stdout)
 
-        # append items to the playlist list but make sure to break when its mroe or less than 5
+        # append items to the playlist list but make sure to break when its mroe or less than 10
+        added_items = 0
         for item in temp_playlist:
+            # dont add too much
+            if len(track_list) > song_find_count and song_find_count < 3 and added_items >= 2:
+                break
             # make sure correct link
             if not correct_link_check(item):
                 continue
             # make sure no duplicates
             playlist_list.add(item)
-            if len(playlist_list) >= 5:
+            added_items += 1
+            # no more than 10 tracks (testing purposes)
+            if len(playlist_list) >= 10:
                 break
 
-        # if not 5, then loop again
-        if len(playlist_list) >= 5:
+        # if not 10, then loop again
+        if len(playlist_list) >= 10:
             break
         # make sure no duplicates (turn into set, then list)
         i += 1
+
+        # find 3 for first 2 iterations, then 2 after
+        if i == 2:
+            song_find_count = 2
+
     # NOW THAT THERE IS NO DUPLICATES, WE CAN RETURN A LIST OF STATS
     actual_playlist_list = []
     for x in playlist_list:
-        try:
-            get_playlist_name(x)
-        except:
-            print(x, file=sys.stdout)
         new_dict = {'Name': get_playlist_name(x),
                     'Image': get_playlist_art(x),
                     'Link': x}
@@ -125,21 +138,19 @@ def get_source_code(link):
 # gets page of playlists
 def get_google_results(query):
     query = urllib.parse.quote_plus(query)
-    response = get_source_code("https://www.google.com/search?q==site%3Aopen.spotify.com+" + query)
+    response = get_source_code("https://www.google.com/search?q==site%3Aopen.spotify.com%2Fplaylist+" + query)
 
     # table of any google links
     results = list(response.html.absolute_links)
-    google_domains = ('https://www.google.',
-                      'https://google.',
-                      'https://policies.google.',
-                      'https://support.google.',
-                      'https://maps.google.',
-                      'https://webcache.googleusercontent.',
-                      'http://webcache.googleusercontent.')
+    print(results, file=sys.stdout)
 
-    # remove google urls
+    wanted_domains = ('https://open.spotify.com/playlist')
+
+    # remove every url except spotify playlists
     for url in results[:]:
-        if url.startswith(google_domains):
+        if url.startswith(wanted_domains):
+            continue
+        else:
             results.remove(url)
 
     return results
