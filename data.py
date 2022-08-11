@@ -67,9 +67,7 @@ def get_five_playlists(track_list) -> list:
     # NOW THAT THERE IS NO DUPLICATES, WE CAN RETURN A LIST OF STATS
     actual_playlist_list = []
     for x in playlist_list:
-        new_dict = {'Name': get_playlist_name(x),
-                    'Image': get_playlist_art(x),
-                    'Link': x}
+        new_dict = get_playlist_info(x)
         actual_playlist_list.append(new_dict)
     return actual_playlist_list
 
@@ -98,39 +96,16 @@ def get_tracks_from_pl(pl_link) -> list:
     return track_list
 
 
-# gets name of playlist
-def get_playlist_name(pl_link) -> str:
-    playlist_id = pl_link.split("/")[-1].split("?")[0]
-    results = sp.playlist(playlist_id)
-    return results['name']
-
-
-# gets link of playlist image
-def get_playlist_art(pl_link) -> str:
-    playlist_id = pl_link.split("/")[-1].split("?")[0]
-    results = sp.playlist(playlist_id)
-    return results['images'][0]['url']
-
-
-# gets the track count of playlist
-def get_playlist_trackcount(pl_link) -> str:
-    playlist_id = pl_link.split("/")[-1].split("?")[0]
-    results = sp.playlist(playlist_id)
-    return results['tracks']['total']
-
-
-# gets description of playlist
-def get_playlist_description(pl_link) -> str:
-    playlist_id = pl_link.split("/")[-1].split("?")[0]
-    results = sp.playlist(playlist_id)
-    return results['description']
-
-# gets all playlist info
+# gets all playlist info for 1 playlist into a dictionary
 def get_playlist_info(pl_link) -> dict:
     playlist_id = pl_link.split("/")[-1].split("?")[0]
     results = sp.playlist(playlist_id)
-
-
+    new_dict = {'Name': results['name'],
+                'Image': results['images'][0]['url'],
+                'Desc': results['description'],
+                'Count': results['tracks']['total'],
+                'Link': pl_link}
+    return new_dict
 
 
 # gets song matches of 2 playlists
