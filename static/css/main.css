@@ -62,14 +62,14 @@ a:active {color: black;}    /* selected link */
 }
 
 .row {
-    display: flex;
+    margin: auto;
 }
 
 .column {
-    width: 50%;
-    flex: 50%;
+    position: relative;
     padding: 10px;
-    top: -65px;
+    top: -80px;
+    margin: 0;
 }
 
 .leftcolumn {

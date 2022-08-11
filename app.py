@@ -3,6 +3,7 @@ import data
 
 app = Flask(__name__)
 
+
 @app.route('/', methods=["GET", "POST"])
 def index():
     if request.method == "POST":
@@ -17,8 +18,11 @@ def index():
         # now that we have the track_list, we have to find 5 similar playlists
 
         playlist_list = data.get_five_playlists(track_list)
-        return render_template("index.html", spotify_link=spotify_link, track_list_len=len(track_list),
+        return render_template("index.html", spotify_link=spotify_link,
+                               your_playlist=spotify_link,
+                               track_list_len=len(track_list),
                                playlist_list=playlist_list)
+
     return render_template("index.html")
 
 

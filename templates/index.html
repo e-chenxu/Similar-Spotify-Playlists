@@ -17,10 +17,9 @@
 {% block left_column %}
     {% if track_list_len %}
         <h2 class="center">Your Playlist</h2>
-        <div class="track">
-            <p>
-                {{ track_list_len }}
-            </p>
+        <div class = "playlist">
+            <img src="{{ your_playlist['Image'] }}" alt="picture" style="float: left; margin-right: 15px">
+            <p><a href="{{ your_playlist['Link'] }}" class="linktext" target="_blank">{{ your_playlist['Name'] }}</a></p>
         </div>
     {% endif %}
 

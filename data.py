@@ -125,6 +125,13 @@ def get_playlist_description(pl_link) -> str:
     results = sp.playlist(playlist_id)
     return results['description']
 
+# gets all playlist info
+def get_playlist_info(pl_link) -> dict:
+    playlist_id = pl_link.split("/")[-1].split("?")[0]
+    results = sp.playlist(playlist_id)
+
+
+
 
 # gets song matches of 2 playlists
 def get_song_matches(pl_link1, pl_link2) -> str:
