@@ -13,3 +13,8 @@ A website using Python, Flask and Spotify API.
 Eric Chen-Xu <br>
 Freddy Francisco-Ramos <br>
 Johnson Dinh
+
+# TO DO:
+website favicon
+website hover name, descp
+domain name

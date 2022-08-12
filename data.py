@@ -70,6 +70,7 @@ def get_five_playlists(spotify_link) -> list:
     actual_playlist_list = []
     for x in playlist_list:
         new_dict = get_playlist_info(x)
+        new_dict['Similar'] = get_song_matches(x, spotify_link)
         actual_playlist_list.append(new_dict)
     return actual_playlist_list
 
@@ -98,6 +99,27 @@ def get_tracks_from_pl(pl_link) -> list:
     return track_list
 
 
+# this will get a list of track ids
+def get_track_ids_from_pl(pl_link) -> list:
+    # get playlist id
+    # playlist_link = "https://open.spotify.com/playlist/4YXr1VsIVKxOk5xYrZxGlT"
+    playlist_id = pl_link.split("/")[-1].split("?")[0]
+    results = sp.playlist_items(playlist_id)
+    tracks = results['items']
+    # continue if there is more items
+    while results['next']:
+        results = sp.next(results)
+        tracks.extend(results['items'])
+    # create an list and append the track name, artist, and picture
+    track_id_list = []
+    for x in tracks:
+        # if image for album doesnt exist, skip because not a song
+        if not x['track']['album']['images']:
+            continue
+        track_id_list.append(x['track']['id'])
+    return track_id_list
+
+
 # gets all playlist info for 1 playlist into a dictionary
 def get_playlist_info(pl_link) -> dict:
     playlist_id = pl_link.split("/")[-1].split("?")[0]
@@ -106,14 +128,17 @@ def get_playlist_info(pl_link) -> dict:
                 'Image': results['images'][0]['url'],
                 'Desc': results['description'],
                 'Count': results['tracks']['total'],
-                'Similar': 0,
                 'Link': pl_link}
     return new_dict
 
 
-# gets song matches of 2 playlists
-def get_song_matches(pl_link1, pl_link2) -> str:
-    return
+# gets number of song matches of 2 playlists
+def get_song_matches(pl_link, pl_link_og) -> str:
+    # get both track lists
+    track_list = get_track_ids_from_pl(pl_link)
+    track_list_og = get_track_ids_from_pl(pl_link_og)
+    # get the set of the same ids, then get the length
+    return str(len(set(track_list).intersection(track_list_og)))
 
 
 def find_similar_playlists(track_list) -> set:

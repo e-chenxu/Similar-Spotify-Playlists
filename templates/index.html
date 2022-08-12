@@ -19,7 +19,7 @@
         <h2 class="center">Your Playlist</h2>
         <div class = "playlist">
             <img src="{{ your_playlist['Image'] }}" alt="picture" style="float: left; margin-right: 15px">
-            <p><a href="{{ your_playlist['Link'] }}" class="linktext" target="_blank">{{ your_playlist['Name'] }}</a></p>
+            <p><a href="{{ your_playlist['Link'] }}" class="linktext" target="_blank">{{ your_playlist['Name'] }} {{ your_playlist['Count'] }}</a></p>
         </div>
     {% endif %}
 
@@ -32,7 +32,7 @@
     {% for playlist in playlist_list %}
     <div class = "playlist">
         <img src="{{ playlist['Image'] }}" alt="picture" style="float: left; margin-right: 15px">
-        <p><a href="{{ playlist['Link'] }}" class="linktext" target="_blank">{{ playlist['Name'] }}</a></p>
+        <p><a href="{{ playlist['Link'] }}" class="linktext" target="_blank">{{ playlist['Name'] }} {{ playlist['Similar'] }}</a></p>
     </div>
     {% endfor %}
 
