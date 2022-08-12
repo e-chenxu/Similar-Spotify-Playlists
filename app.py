@@ -14,13 +14,12 @@ def index():
         if not data.correct_link_check(spotify_link):
             return '', 204
 
-        track_list = data.get_tracks_from_pl(spotify_link)
-        # now that we have the track_list, we have to find 5 similar playlists
+        # now that we have the the spotify playlist llink, we have to find 5 similar playlists
 
-        playlist_list = data.get_five_playlists(track_list)
+        playlist_list = data.get_five_playlists(spotify_link)
+        your_playlist = data.get_playlist_info(spotify_link)
         return render_template("index.html", spotify_link=spotify_link,
-                               your_playlist=spotify_link,
-                               track_list_len=len(track_list),
+                               your_playlist=your_playlist,
                                playlist_list=playlist_list)
 
     return render_template("index.html")

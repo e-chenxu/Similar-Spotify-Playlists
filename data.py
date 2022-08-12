@@ -12,7 +12,9 @@ sp = spotipy.Spotify(auth_manager=SpotifyClientCredentials())
 
 
 # this function will try to find 5 different playlists
-def get_five_playlists(track_list) -> list:
+def get_five_playlists(spotify_link) -> list:
+    # get the track list from this spotify link
+    track_list = get_tracks_from_pl(spotify_link)
     # total playlist list that we are returning
     playlist_list = set()
     i = 0
@@ -104,6 +106,7 @@ def get_playlist_info(pl_link) -> dict:
                 'Image': results['images'][0]['url'],
                 'Desc': results['description'],
                 'Count': results['tracks']['total'],
+                'Similar': 0,
                 'Link': pl_link}
     return new_dict
 

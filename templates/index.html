@@ -15,7 +15,7 @@
 {% endblock %}
 
 {% block left_column %}
-    {% if track_list_len %}
+    {% if your_playlist %}
         <h2 class="center">Your Playlist</h2>
         <div class = "playlist">
             <img src="{{ your_playlist['Image'] }}" alt="picture" style="float: left; margin-right: 15px">
@@ -26,7 +26,7 @@
 {% endblock %}
 
 {% block right_column %}
-    {% if track_list_len %}
+    {% if your_playlist %}
         <h2 class="center">Found Playlists</h2>
     {% endif %}
     {% for playlist in playlist_list %}
