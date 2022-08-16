@@ -47,11 +47,21 @@ label{
 }
 
 img {
+    overflow: hidden;
     max-width: 70px;
-    max-height: 50%;
-    min-width: 70px;
+    max-height: 70px;
     width: auto;
     height: auto;
+}
+
+.image_container{
+    float: left;
+    margin-right: 15px;
+    width: 70px;
+    height: 70px;
+    border: black solid 1px;
+    text-align: center;
+
 }
 
 a {text-decoration: none;}   /* doesn't underline */

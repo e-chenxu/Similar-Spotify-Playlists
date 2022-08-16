@@ -18,7 +18,7 @@
     {% if your_playlist %}
         <h2 class="center">Your Playlist</h2>
         <div class = "playlist">
-            <img src="{{ your_playlist['Image'] }}" alt="picture" style="float: left; margin-right: 15px">
+            <div class="image_container"><img src="{{ your_playlist['Image'] }}" alt="picture"></div>
             <p><a href="{{ your_playlist['Link'] }}" class="linktext" target="_blank">{{ your_playlist['Name'] }}</a></p>
             <div class="description">{{ your_playlist['Desc'] }}</div>
             <p class="track_num">{{ your_playlist['Count'] }} tracks</p>

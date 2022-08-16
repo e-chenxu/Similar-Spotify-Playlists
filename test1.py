@@ -25,11 +25,11 @@ print(data.get_track_ids_from_pl("https://open.spotify.com/playlist/4YXr1VsIVKxO
 
 # gets number of song matches of 2 playlists
 # get both track lists
-track_list = data.get_track_ids_from_pl("https://open.spotify.com/playlist/4YXr1VsIVKxOk5xYrZxGlT")
-track_list_og = data.get_track_ids_from_pl("https://open.spotify.com/playlist/6IVklb7nv3xPRcPCdWOqNV")
-a = set(track_list).intersection(track_list_og)
-b = len(a)
-print(len(a))
+#track_list = data.get_track_ids_from_pl("https://open.spotify.com/playlist/4YXr1VsIVKxOk5xYrZxGlT")
+#track_list_og = data.get_track_ids_from_pl("https://open.spotify.com/playlist/6IVklb7nv3xPRcPCdWOqNV")
+#a = set(track_list).intersection(track_list_og)
+#b = len(a)
+#print(len(a))
 
 
 

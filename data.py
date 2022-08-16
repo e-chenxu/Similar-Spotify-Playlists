@@ -90,13 +90,15 @@ def get_tracks_from_pl(pl_link) -> list:
     track_list = []
     for x in tracks:
         # if image for album doesnt exist, skip because not a song
-        if x['track']['album']['images'] is None:
+        if x['track'] is None:
             continue
-        elif len(x['track']['album']['images']) == 0:
-            continue
+        if len(x['track']['album']['images']) == 0:
+            image_results = ''
+        else:
+            image_results = x['track']['album']['images'][2]['url']
         new_dict = {'Name': x['track']['name'],
                     'Artist': x['track']['artists'][0]['name'],
-                    'Image': x['track']['album']['images'][2]['url']}
+                    'Image': image_results}
         track_list.append(new_dict)
     return track_list
 
@@ -117,9 +119,7 @@ def get_track_ids_from_pl(pl_link) -> list:
     # ADD NAME OF SONG AND ARTIST ON SAME LINE
     for x in tracks:
         # if image for album doesnt exist, skip because not a song
-        if x['track']['album']['images'] is None:
-            continue
-        elif len(x['track']['album']['images']) == 0:
+        if x['track'] is None:
             continue
         total_track = x['track']['name'] + ' ' + x['track']['artists'][0]['name']
         track_id_list.append(total_track)
