@@ -18,3 +18,6 @@ Johnson Dinh
 website favicon
 website hover name, descp
 domain name
+loading symbol
+refresh button
+dance data maybe?

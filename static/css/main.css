@@ -47,14 +47,18 @@ label{
 }
 
 img {
-    max-width: 100%;
-    max-height: 100%;
+    max-width: 70px;
+    max-height: 50%;
+    min-width: 70px;
+    width: auto;
+    height: auto;
 }
 
 a {text-decoration: none;}   /* doesn't underline */
 a:link {color: black;}      /* unvisited link */
 a:visited {color: black;}   /* visited link */
-a:hover {color: black;}     /* mouse over link */
+a:hover {color: cornflowerblue;
+        text-decoration: underline}     /* mouse over link */
 a:active {color: black;}    /* selected link */
 
 .center{
@@ -66,10 +70,7 @@ a:active {color: black;}    /* selected link */
 }
 
 .column {
-    position: relative;
-    padding: 10px;
-    top: -80px;
-    margin: 0;
+
 }
 
 .leftcolumn {
@@ -129,16 +130,38 @@ a:active {color: black;}    /* selected link */
 .playlist {
     position: relative;
     border: solid black;
-    width: 50%;
+    width: 40%;
     margin: auto auto 20px;
-    height: 50px;
-}
+    height: 170px;
+    }
+    .linktext{
+        font-size: 17px;
+        color: #000;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    .description{
+        float: left;
+        border: none;
+        margin: auto;
+        width: 80%;
+        height: 50%;
+        font-size: 15px;
+        color: gray;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    .track_num{
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        margin: 1px 1px 1px 1px;
 
-.linktext{
-    display: block;
-    font-size: 17px;
-    color: #000;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
+    }
+    .track_num_similar{
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        margin: 1px 1px 1px 1px;
+    }

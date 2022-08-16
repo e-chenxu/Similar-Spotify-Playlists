@@ -90,7 +90,9 @@ def get_tracks_from_pl(pl_link) -> list:
     track_list = []
     for x in tracks:
         # if image for album doesnt exist, skip because not a song
-        if not x['track']['album']['images']:
+        if x['track']['album']['images'] is None:
+            continue
+        elif len(x['track']['album']['images']) == 0:
             continue
         new_dict = {'Name': x['track']['name'],
                     'Artist': x['track']['artists'][0]['name'],
@@ -112,11 +114,15 @@ def get_track_ids_from_pl(pl_link) -> list:
         tracks.extend(results['items'])
     # create an list and append the track name, artist, and picture
     track_id_list = []
+    # ADD NAME OF SONG AND ARTIST ON SAME LINE
     for x in tracks:
         # if image for album doesnt exist, skip because not a song
-        if not x['track']['album']['images']:
+        if x['track']['album']['images'] is None:
             continue
-        track_id_list.append(x['track']['id'])
+        elif len(x['track']['album']['images']) == 0:
+            continue
+        total_track = x['track']['name'] + ' ' + x['track']['artists'][0]['name']
+        track_id_list.append(total_track)
     return track_id_list
 
 
@@ -124,8 +130,12 @@ def get_track_ids_from_pl(pl_link) -> list:
 def get_playlist_info(pl_link) -> dict:
     playlist_id = pl_link.split("/")[-1].split("?")[0]
     results = sp.playlist(playlist_id)
+    if len(results['images']) == 0:
+        image_results = ''
+    else:
+        image_results = results['images'][0]['url']
     new_dict = {'Name': results['name'],
-                'Image': results['images'][0]['url'],
+                'Image': image_results,
                 'Desc': results['description'],
                 'Count': results['tracks']['total'],
                 'Link': pl_link}
@@ -147,7 +157,11 @@ def find_similar_playlists(track_list) -> set:
     for x in track_list:
         total_string += '"' + x['Name'] + '"'
         total_string += '"' + x['Artist'] + '"'
-    return set(get_google_results(total_string))
+    # shuffle this set
+    found_playlists = get_google_results(total_string)
+    random.shuffle(found_playlists)
+    # get rid of duplicates
+    return set(found_playlists)
 
 
 # google search data functions

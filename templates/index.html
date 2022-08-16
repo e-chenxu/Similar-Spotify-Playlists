@@ -14,25 +14,30 @@
 </form>
 {% endblock %}
 
-{% block left_column %}
+{% block top_column %}
     {% if your_playlist %}
         <h2 class="center">Your Playlist</h2>
         <div class = "playlist">
             <img src="{{ your_playlist['Image'] }}" alt="picture" style="float: left; margin-right: 15px">
-            <p><a href="{{ your_playlist['Link'] }}" class="linktext" target="_blank">{{ your_playlist['Name'] }} {{ your_playlist['Count'] }}</a></p>
+            <p><a href="{{ your_playlist['Link'] }}" class="linktext" target="_blank">{{ your_playlist['Name'] }}</a></p>
+            <div class="description">{{ your_playlist['Desc'] }}</div>
+            <p class="track_num">{{ your_playlist['Count'] }} tracks</p>
         </div>
     {% endif %}
 
 {% endblock %}
 
-{% block right_column %}
+{% block bottom_column %}
     {% if your_playlist %}
         <h2 class="center">Found Playlists</h2>
     {% endif %}
     {% for playlist in playlist_list %}
     <div class = "playlist">
         <img src="{{ playlist['Image'] }}" alt="picture" style="float: left; margin-right: 15px">
-        <p><a href="{{ playlist['Link'] }}" class="linktext" target="_blank">{{ playlist['Name'] }} {{ playlist['Similar'] }}</a></p>
+        <p><a href="{{ playlist['Link'] }}" class="linktext" target="_blank">{{ playlist['Name'] }}</a></p>
+        <div class="description">{{ playlist['Desc'] }}</div>
+        <p class="track_num">{{ playlist['Count'] }} tracks</p>
+        <p class="track_num_similar">{{ playlist['Similar'] }} similar tracks</p>
     </div>
     {% endfor %}
 

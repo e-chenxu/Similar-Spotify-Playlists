@@ -10,13 +10,9 @@
     <div class="submit_body">
     {% block body_input %}{% endblock %}
     </div>
-    <div class="row">
-        <div class="column">
-            <div>{% block left_column %}{% endblock %}</div>
-        </div>
-        <div class="column">
-            <div>{% block right_column %}{% endblock %}</div>
-        </div>
+    <div>
+        <div>{% block top_column %}{% endblock %}</div>
+        <div>{% block bottom_column %}{% endblock %}</div>
     </div>
 </body>
 </html>
