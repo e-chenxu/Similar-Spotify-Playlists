@@ -16,8 +16,15 @@ Johnson Dinh
 
 # TO DO:
 website favicon
+
 website hover name, descp
+
 domain name
+
 loading symbol
+
 refresh button
-genre data maybe?
+
+genre data on the right
+
+better algorithm

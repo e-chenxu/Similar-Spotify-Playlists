@@ -33,7 +33,7 @@
     {% endif %}
     {% for playlist in playlist_list %}
     <div class = "playlist">
-        <img src="{{ playlist['Image'] }}" alt="picture" style="float: left; margin-right: 15px">
+        <div class="image_container"><img src="{{ playlist['Image'] }}" alt="picture"></div>
         <p><a href="{{ playlist['Link'] }}" class="linktext" target="_blank">{{ playlist['Name'] }}</a></p>
         <div class="description">{{ playlist['Desc'] }}</div>
         <p class="track_num">{{ playlist['Count'] }} tracks</p>

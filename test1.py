@@ -20,16 +20,16 @@ tracks = results['items']
 #    new_dict = {'Name': x['track']['name'], 'Artist': x['track']['artists'][0]['name'],
 #               'Image': x['track']['album']['images']}
 #   track_list.append(new_dict)
-print(data.get_track_ids_from_pl("https://open.spotify.com/playlist/4YXr1VsIVKxOk5xYrZxGlT"))
+print(data.get_track_ids_from_pl("https://open.spotify.com/playlist/37i9dQZF1E8MbeBoZEFkA4"))
 
 
 # gets number of song matches of 2 playlists
 # get both track lists
-#track_list = data.get_track_ids_from_pl("https://open.spotify.com/playlist/4YXr1VsIVKxOk5xYrZxGlT")
-#track_list_og = data.get_track_ids_from_pl("https://open.spotify.com/playlist/6IVklb7nv3xPRcPCdWOqNV")
-#a = set(track_list).intersection(track_list_og)
-#b = len(a)
-#print(len(a))
+track_list = data.get_track_ids_from_pl("https://open.spotify.com/playlist/0NTOWk1KxteInzI85BNEjB")
+track_list_og = data.get_track_ids_from_pl("https://open.spotify.com/playlist/37i9dQZF1E8MbeBoZEFkA4")
+a = set(track_list).intersection(track_list_og)
+b = len(a)
+print(len(a))
 
 
 

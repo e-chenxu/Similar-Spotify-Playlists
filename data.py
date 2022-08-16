@@ -1,3 +1,5 @@
+import html
+import re
 import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
 import requests
@@ -10,6 +12,8 @@ import sys
 # my keys
 sp = spotipy.Spotify(auth_manager=SpotifyClientCredentials())
 
+# this is for removing weird tags
+TAG_RE = re.compile(r'<[^>]+>')
 
 # this function will try to find 5 different playlists
 def get_five_playlists(spotify_link) -> list:
@@ -44,7 +48,7 @@ def get_five_playlists(spotify_link) -> list:
         added_items = 0
         for item in temp_playlist:
             # dont add too much
-            if len(track_list) > song_find_count and song_find_count < 3 and added_items >= 2:
+            if len(track_list) > song_find_count and song_find_count < 3 and added_items >= 3:
                 break
             # make sure correct link
             if not correct_link_check(item):
@@ -70,6 +74,9 @@ def get_five_playlists(spotify_link) -> list:
     actual_playlist_list = []
     for x in playlist_list:
         new_dict = get_playlist_info(x)
+        # check if too many tracks
+        if new_dict['Count'] > 250:
+            continue
         new_dict['Similar'] = get_song_matches(x, spotify_link)
         actual_playlist_list.append(new_dict)
     return actual_playlist_list
@@ -136,7 +143,7 @@ def get_playlist_info(pl_link) -> dict:
         image_results = results['images'][0]['url']
     new_dict = {'Name': results['name'],
                 'Image': image_results,
-                'Desc': results['description'],
+                'Desc': fix_text(results['description']),
                 'Count': results['tracks']['total'],
                 'Link': pl_link}
     return new_dict
@@ -163,6 +170,12 @@ def find_similar_playlists(track_list) -> set:
     # get rid of duplicates
     return set(found_playlists)
 
+
+def fix_text(text) -> str:
+    html_text = html.unescape(text)
+    return TAG_RE.sub('', html_text)
+
+# BREAK #
 
 # google search data functions
 

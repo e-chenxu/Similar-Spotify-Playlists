@@ -47,11 +47,10 @@ label{
 }
 
 img {
-    overflow: hidden;
-    max-width: 70px;
-    max-height: 70px;
-    width: auto;
-    height: auto;
+    object-fit: cover;
+    width: 70px;
+    height: 70px;
+    margin: 0;
 }
 
 .image_container{
@@ -59,8 +58,9 @@ img {
     margin-right: 15px;
     width: 70px;
     height: 70px;
-    border: black solid 1px;
+    border: none;
     text-align: center;
+    padding: 0;
 
 }
 
@@ -145,6 +145,8 @@ a:active {color: black;}    /* selected link */
     height: 170px;
     }
     .linktext{
+        display: inline-block;
+        width: calc(80%);
         font-size: 17px;
         color: #000;
         white-space: nowrap;
