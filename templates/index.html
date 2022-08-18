@@ -16,7 +16,7 @@
 
 {% block top_column %}
     {% if your_playlist %}
-        <div class = "top_row">
+        <div class = "top_row animate-bottom">
         <h2 class="center">Your Playlist</h2>
         <div class = "playlist">
             <div class="image_container"><img src="{{ your_playlist['Image'] }}" alt="picture"></div>
@@ -31,7 +31,7 @@
 
 {% block bottom_column %}
     {% if your_playlist %}
-        <div class = "bottom_row">
+        <div class = "bottom_row animate-bottom">
         <h2 class="center">Found Playlists</h2>
     {% for playlist in playlist_list %}
     <div class = "playlist">
