@@ -15,6 +15,7 @@ sp = spotipy.Spotify(auth_manager=SpotifyClientCredentials())
 # this is for removing weird tags
 TAG_RE = re.compile(r'<[^>]+>')
 
+
 # this function will try to find 5 different playlists
 def get_five_playlists(spotify_link) -> list:
     # get the track list from this spotify link
@@ -26,7 +27,7 @@ def get_five_playlists(spotify_link) -> list:
     song_find_count = 3
     # playlist finding algorithm
 
-    while i < 5:
+    while i < 7:
         # THIS SHOULD BE CHANGED LATER
         # first we get a variable amoutn of random songs from the track_list
 
@@ -35,20 +36,19 @@ def get_five_playlists(spotify_link) -> list:
             song_find_count = len(track_list)
 
         # always find at least 1, make sure the length is more than 0, also find 1 at end
-        if i == 4 or (song_find_count < 1 and len(track_list) > 0):
+        if i == 6 or (song_find_count < 1 and len(track_list) > 0):
             song_find_count = 1
 
         random_sample = random.sample(track_list, song_find_count)
 
         # we then find similar playlists using these random samples
         temp_playlist = find_similar_playlists(random_sample)
-        print(temp_playlist, file=sys.stdout)
 
         # append items to the playlist list but make sure to break when its mroe or less than 10
         added_items = 0
         for item in temp_playlist:
             # dont add too much
-            if len(track_list) > song_find_count and song_find_count < 3 and added_items >= 3:
+            if len(track_list) > song_find_count and song_find_count < 3 and added_items >= 2:
                 break
             # make sure correct link
             if not correct_link_check(item):
@@ -79,7 +79,9 @@ def get_five_playlists(spotify_link) -> list:
             continue
         new_dict['Similar'] = get_song_matches(x, spotify_link)
         actual_playlist_list.append(new_dict)
-    return actual_playlist_list
+    # sort this playlist list
+    new_list = sorted(actual_playlist_list, key=lambda a: int(a['Similar']), reverse=True)
+    return new_list
 
 
 # this will get a list of track and their data in a dictionary
@@ -175,6 +177,7 @@ def fix_text(text) -> str:
     html_text = html.unescape(text)
     return TAG_RE.sub('', html_text)
 
+
 # BREAK #
 
 # google search data functions
@@ -196,7 +199,6 @@ def get_google_results(query):
 
     # table of any google links
     results = list(response.html.absolute_links)
-    print(results, file=sys.stdout)
 
     wanted_domains = ('https://open.spotify.com/playlist')
 

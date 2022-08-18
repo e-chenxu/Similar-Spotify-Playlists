@@ -11,6 +11,7 @@ playlist_link = "https://open.spotify.com/playlist/4YXr1VsIVKxOk5xYrZxGlT"
 playlist_URI = playlist_link.split("/")[-1].split("?")[0]
 results = sp.playlist_items(playlist_URI)
 tracks = results['items']
+print(tracks)
 # while results['next']:
 #   results = sp.next(results)
 #   tracks.extend(results['items'])

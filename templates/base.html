@@ -1,15 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" content="width=device-width, initial-scale=1">
+    <meta name="viewport" charset="UTF-8" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="{{ url_for('static',filename='css/main.css')}}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script type="text/javascript" src="../static/js/home.js"></script>
     {% block head %}{% endblock %}
 </head>
-<body>
+<body onLoad="hideLoad(); hideLoad1();">
     <div class="submit_body">
     {% block body_input %}{% endblock %}
     </div>
+    {% if your_playlist %}
+        <button class = "refresh_button" onClick="window.location.reload(); showLoad1();">Refresh Playlists</button><div id="loader_bottom" class="loader bottom"></div>
+    {% endif %}
     <div>
         <div>{% block top_column %}{% endblock %}</div>
         <div>{% block bottom_column %}{% endblock %}</div>

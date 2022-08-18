@@ -25,6 +25,4 @@ loading symbol
 
 refresh button
 
-genre data on the right
-
 better algorithm

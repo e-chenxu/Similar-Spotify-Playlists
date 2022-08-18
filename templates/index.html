@@ -9,13 +9,14 @@
 <form method="POST">
   <label for="link">Playlist link:</label><br>
     <div class="center">
-        <input class="" type="text" id="link" name="link" placeholder="e.g. https://open.spotify.com/playlist/37i9dQZEVXbMDoHDwVN2tF"><button class="" type="submit"><i class="fa fa-search"></i></button>
-    </div>
+        <input type="text" id="link" name="link" placeholder="e.g. https://open.spotify.com/playlist/37i9dQZEVXbMDoHDwVN2tF"><button type="submit" onClick="showLoad();"><i class="fa fa-search"></i></button>
+    </div><div id="loader_top" class="loader top"></div>
 </form>
 {% endblock %}
 
 {% block top_column %}
     {% if your_playlist %}
+        <div class = "top_row">
         <h2 class="center">Your Playlist</h2>
         <div class = "playlist">
             <div class="image_container"><img src="{{ your_playlist['Image'] }}" alt="picture"></div>
@@ -23,14 +24,15 @@
             <div class="description">{{ your_playlist['Desc'] }}</div>
             <p class="track_num">{{ your_playlist['Count'] }} tracks</p>
         </div>
+        </div>
     {% endif %}
 
 {% endblock %}
 
 {% block bottom_column %}
     {% if your_playlist %}
+        <div class = "bottom_row">
         <h2 class="center">Found Playlists</h2>
-    {% endif %}
     {% for playlist in playlist_list %}
     <div class = "playlist">
         <div class="image_container"><img src="{{ playlist['Image'] }}" alt="picture"></div>
@@ -40,5 +42,7 @@
         <p class="track_num_similar">{{ playlist['Similar'] }} similar tracks</p>
     </div>
     {% endfor %}
+        </div>
+    {% endif %}
 
 {% endblock %}
