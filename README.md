@@ -34,5 +34,8 @@ python3 app.py
 Open localhost, then put your playlist link in and search!
 
 ## Authors and Contributors
-[Eric Chen-Xu](https://github.com/e-chenxu) <br>
+[Eric Chen Xu](https://github.com/e-chenxu) <br>
 [Johnson Dinh](https://github.com/jdinh-782)
+
+## TO DO:
+fast search, (allow checkbox input for 3 different levels of search algorithms (quick search, regular search, detailed search))

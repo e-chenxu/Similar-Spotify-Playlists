@@ -14,7 +14,7 @@ def index():
         if not data.correct_link_check(spotify_link):
             return '', 204
 
-        # now that we have the the spotify playlist llink, we have to find 5 similar playlists
+        # now that we have the the spotify playlist link, we have to find 5 similar playlists
 
         playlist_list = data.get_five_playlists(spotify_link)
         your_playlist = data.get_playlist_info(spotify_link)

@@ -3,44 +3,44 @@ body{
     font-family: sans-serif;
 }
 
-/* this form template is from w3 schools */
+/* form template from w3 schools */
 form {
     align-items: center;
     margin: 0 auto;
 }
 
 form input[type=text] {
-  padding: 10px;
-  font-size: 17px;
-  border: 1px solid grey;
-  width: 60%;
-  background: #f5f4f4;
+    padding: 10px;
+    font-size: 17px;
+    border: 1px solid grey;
+    width: 60%;
+    background: #f5f4f4;
     border-bottom-left-radius: 5px;
     border-top-left-radius: 5px;
 }
 
 form button {
-  width: 10%;
-  padding: 10px;
-  background: #1c63f1;
-  color: white;
-  font-size: 17px;
-  border: 1px solid grey;
-  border-left: none;
-  cursor: pointer;
+    width: 10%;
+    padding: 10px;
+    background: #1c63f1;
+    color: white;
+    font-size: 17px;
+    border: 1px solid grey;
+    border-left: none;
+    cursor: pointer;
     border-bottom-right-radius: 5px;
     border-top-right-radius: 5px;
 }
 
 form button:hover {
-  background: #0c57ec;
+    background: #0c57ec;
 }
 
 /* clear content */
 form::after {
-  content: "";
-  clear: both;
-  display: table;
+    content: "";
+    clear: both;
+    display: table;
 }
 
 label{
@@ -70,8 +70,7 @@ img {
 a {text-decoration: none;}   /* doesn't underline */
 a:link {color: black;}      /* unvisited link */
 a:visited {color: black;}   /* visited link */
-a:hover {color: cornflowerblue;
-        text-decoration: underline}     /* mouse over link */
+a:hover {color: cornflowerblue; text-decoration: underline}  /* mouse over link */
 a:active {color: black;}    /* selected link */
 
 .center{
@@ -80,10 +79,6 @@ a:active {color: black;}    /* selected link */
 
 .row {
     margin: auto;
-}
-
-.column {
-
 }
 
 .leftcolumn {
@@ -183,15 +178,15 @@ a:active {color: black;}    /* selected link */
     }
 
 .refresh_button{
-  margin-left: 20px;
-  width: 10%;
-  height: 50px;
-  padding: 5px;
-  background: #1c63f1;
-  color: white;
-  font-size: 15px;
-  border: 1px solid grey;
-  cursor: pointer;
+    margin-left: 20px;
+    width: 10%;
+    height: 50px;
+    padding: 5px;
+    background: #1c63f1;
+    color: white;
+    font-size: 15px;
+    border: 1px solid grey;
+    cursor: pointer;
     border-radius: 5px;
     position: absolute;
     z-index: 1;
@@ -203,61 +198,58 @@ a:active {color: black;}    /* selected link */
     position: relative;
 }
 
-.bottom_row{
-
-}
+/* ANIMATIONS, taken from w3schools */
 
 
-/* Center the loader */
+/* loader */
 .loader {
-  border: 10px solid #f3f3f3;
-  border-radius: 50%;
-  border-top: 10px solid #3498db;
-  -webkit-animation: spin 2s linear infinite;
-  animation: spin 2s linear infinite;
+    border: 10px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 10px solid #3498db;
+    -webkit-animation: spin 2s linear infinite;
+    animation: spin 2s linear infinite;
 }
 .top{
-      position: relative;
+    position: relative;
     float: right;
     right: 10%;
-  width: 20px;
-  height: 20px;
+    width: 20px;
+    height: 20px;
     top: -40px;
 }
 .bottom{
     position: absolute;
     z-index: 1;
     left: 12.5%;
-    top: 35%;
+    top: 255px;
     width: 20px;
     height: 20px;
 }
 
 @-webkit-keyframes spin {
-  0% { -webkit-transform: rotate(0deg); }
-  100% { -webkit-transform: rotate(360deg); }
+    0% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); }
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }
 
-/* Add animation to "page content" */
 .animate-bottom {
-  position: relative;
-  -webkit-animation-name: animatebottom;
-  -webkit-animation-duration: 1s;
-  animation-name: animatebottom;
-  animation-duration: 1s
+    position: relative;
+    -webkit-animation-name: animatebottom;
+    -webkit-animation-duration: 1.5s;
+    animation-name: animatebottom;
+    animation-duration: 1.5s
 }
 
 @-webkit-keyframes animatebottom {
-  from { bottom:-100px; opacity:0 }
-  to { bottom:0px; opacity:1 }
+    from { bottom:-100px; opacity:0 }
+    to { bottom:0px; opacity:1 }
 }
 
 @keyframes animatebottom {
-  from{ bottom:-100px; opacity:0 }
-  to{ bottom:0; opacity:1 }
+    from{ bottom:-100px; opacity:0 }
+    to{ bottom:0; opacity:1 }
 }

@@ -5,14 +5,12 @@ from spotipy.oauth2 import SpotifyClientCredentials
 import requests
 import urllib
 import random
-from requests_html import HTML
 from requests_html import HTMLSession
-import sys
 
 # my keys
 sp = spotipy.Spotify(auth_manager=SpotifyClientCredentials())
 
-# this is for removing weird tags
+# this is for removing unneeded tags
 TAG_RE = re.compile(r'<[^>]+>')
 
 
@@ -27,16 +25,15 @@ def get_five_playlists(spotify_link) -> list:
     song_find_count = 3
     # playlist finding algorithm
 
-    while i < 7:
-        # THIS SHOULD BE CHANGED LATER
-        # first we get a variable amoutn of random songs from the track_list
+    while i < 10:
+        # first we get a variable amount of random songs from the track_list
 
         # if the track list is too small, then we have to adjust the find count
         if len(track_list) < song_find_count:
             song_find_count = len(track_list)
 
         # always find at least 1, make sure the length is more than 0, also find 1 at end
-        if i == 6 or (song_find_count < 1 and len(track_list) > 0):
+        if i == 8 or (song_find_count < 1 and len(track_list) > 0):
             song_find_count = 1
 
         random_sample = random.sample(track_list, song_find_count)
@@ -66,8 +63,8 @@ def get_five_playlists(spotify_link) -> list:
         # make sure no duplicates (turn into set, then list)
         i += 1
 
-        # find 3 for first 2 iterations, then 2 after
-        if i == 2:
+        # find 3 for first 3 iterations, then 2 after
+        if i == 3:
             song_find_count = 2
 
     # NOW THAT THERE IS NO DUPLICATES, WE CAN RETURN A LIST OF STATS
@@ -79,6 +76,7 @@ def get_five_playlists(spotify_link) -> list:
             continue
         new_dict['Similar'] = get_song_matches(x, spotify_link)
         actual_playlist_list.append(new_dict)
+
     # sort this playlist list
     new_list = sorted(actual_playlist_list, key=lambda a: int(a['Similar']), reverse=True)
     return new_list
