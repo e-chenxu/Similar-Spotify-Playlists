@@ -56,6 +56,12 @@ img {
     margin: 0;
 }
 
+#checkbox{
+    top: 10px;
+    right: 20px;
+    position: absolute;
+}
+
 .image_container{
     float: left;
     margin-right: 15px;
