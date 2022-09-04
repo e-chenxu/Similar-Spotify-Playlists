@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/../Pong-Pygame/.idea/Pong-Pygame.iml" filepath="$PROJECT_DIR$/../Pong-Pygame/.idea/Pong-Pygame.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/flaskProject.iml" filepath="$PROJECT_DIR$/.idea/flaskProject.iml" />
     </modules>
   </component>

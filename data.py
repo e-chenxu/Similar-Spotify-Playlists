@@ -1,73 +1,58 @@
 import html
 import re
 import spotipy
-from spotipy.oauth2 import SpotifyClientCredentials
 import requests
 import urllib
 import random
+from spotipy.oauth2 import SpotifyClientCredentials
 from requests_html import HTMLSession
 
-# my keys
 sp = spotipy.Spotify(auth_manager=SpotifyClientCredentials())
 
-# this is for removing unneeded tags
+# removing unneeded tags
 TAG_RE = re.compile(r'<[^>]+>')
 
 
-# this function will try to find 5 different playlists
-def get_five_playlists(spotify_link) -> list:
-    # get the track list from this spotify link
+def get_playlists(spotify_link, search_algo) -> list:
+    """ Try to return at most 15 playlists and info by searching Google
+    and getting Spotify data, will use the search_algo variable
+    to determine how exhaustive the search algorithm will be
+    """
     track_list = get_tracks_from_pl(spotify_link)
-    # total playlist list that we are returning
-    playlist_list = set()
+    playlist_list = set()             # make sure no duplicates
+    song_find_count = 3               # initially, find playlists with a random sample of 3 songs
     i = 0
-    # find playlists with this number of songs
-    song_find_count = 3
-    # playlist finding algorithm
+    searches = 3 + 2*int(search_algo)
 
-    while i < 10:
-        # first we get a variable amount of random songs from the track_list
+    # adjust sample if the track list is too small
+    if len(track_list) < song_find_count:
+        song_find_count = 1
 
-        # if the track list is too small, then we have to adjust the find count
-        if len(track_list) < song_find_count:
-            song_find_count = len(track_list)
-
-        # always find at least 1, make sure the length is more than 0, also find 1 at end
-        if i == 8 or (song_find_count < 1 and len(track_list) > 0):
-            song_find_count = 1
-
+    while i < searches:
         random_sample = random.sample(track_list, song_find_count)
-
-        # we then find similar playlists using these random samples
         temp_playlist = find_similar_playlists(random_sample)
 
-        # append items to the playlist list but make sure to break when its mroe or less than 10
+        # append items to the playlist list but only add max of 3 each sample for variety
         added_items = 0
         for item in temp_playlist:
-            # dont add too much
-            if len(track_list) > song_find_count and song_find_count < 3 and added_items >= 2:
-                break
-            # make sure correct link
             if not correct_link_check(item):
                 continue
-            # make sure no duplicates
             playlist_list.add(item)
             added_items += 1
-            # no more than 10 tracks (testing purposes)
-            if len(playlist_list) >= 10:
+            if len(playlist_list) >= 15 or (added_items > 2 and len(track_list) > song_find_count):
                 break
 
-        # if not 10, then loop again
-        if len(playlist_list) >= 10:
+        if len(playlist_list) >= 15:
             break
-        # make sure no duplicates (turn into set, then list)
+
+        # search algorithm
+        if i == searches // 3:
+            song_find_count = 2
+        elif i == searches - (searches // 5):
+            song_find_count = 1
         i += 1
 
-        # find 3 for first 3 iterations, then 2 after
-        if i == 3:
-            song_find_count = 2
-
-    # NOW THAT THERE IS NO DUPLICATES, WE CAN RETURN A LIST OF STATS
+    # return a list of playlists and respective info
     actual_playlist_list = []
     for x in playlist_list:
         new_dict = get_playlist_info(x)
@@ -77,7 +62,6 @@ def get_five_playlists(spotify_link) -> list:
         new_dict['Similar'] = get_song_matches(x, spotify_link)
         actual_playlist_list.append(new_dict)
 
-    # sort this playlist list
     new_list = sorted(actual_playlist_list, key=lambda a: int(a['Similar']), reverse=True)
     return new_list
 
@@ -111,9 +95,8 @@ def get_tracks_from_pl(pl_link) -> list:
 
 
 # this will get a list of track ids
-def get_track_ids_from_pl(pl_link) -> list:
+def get_track_ids_from_pl(pl_link) -> set:
     # get playlist id
-    # playlist_link = "https://open.spotify.com/playlist/4YXr1VsIVKxOk5xYrZxGlT"
     playlist_id = pl_link.split("/")[-1].split("?")[0]
     results = sp.playlist_items(playlist_id)
     tracks = results['items']
@@ -121,16 +104,16 @@ def get_track_ids_from_pl(pl_link) -> list:
     while results['next']:
         results = sp.next(results)
         tracks.extend(results['items'])
-    # create an list and append the track name, artist, and picture
-    track_id_list = []
+    # create an set and append the track name, artist, and picture
+    track_id_set = set()
     # ADD NAME OF SONG AND ARTIST ON SAME LINE
     for x in tracks:
         # if image for album doesnt exist, skip because not a song
         if x['track'] is None:
             continue
         total_track = x['track']['name'] + ' ' + x['track']['artists'][0]['name']
-        track_id_list.append(total_track)
-    return track_id_list
+        track_id_set.add(total_track)
+    return track_id_set
 
 
 # gets all playlist info for 1 playlist into a dictionary
@@ -155,7 +138,7 @@ def get_song_matches(pl_link, pl_link_og) -> str:
     track_list = get_track_ids_from_pl(pl_link)
     track_list_og = get_track_ids_from_pl(pl_link_og)
     # get the set of the same ids, then get the length
-    return str(len(set(track_list).intersection(track_list_og)))
+    return str(len(track_list.intersection(track_list_og)))
 
 
 def find_similar_playlists(track_list) -> set:

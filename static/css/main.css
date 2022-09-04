@@ -13,7 +13,7 @@ form input[type=text] {
     padding: 10px;
     font-size: 17px;
     border: 1px solid grey;
-    width: 60%;
+    width: 50%;
     background: #f5f4f4;
     border-bottom-left-radius: 5px;
     border-top-left-radius: 5px;
@@ -46,7 +46,7 @@ form::after {
 label{
     text-align: left;
     position: relative;
-    left: 14%;
+    left: 19%;
 }
 
 img {
@@ -218,7 +218,7 @@ a:active {color: black;}    /* selected link */
 .top{
     position: relative;
     float: right;
-    right: 10%;
+    right: 15%;
     width: 20px;
     height: 20px;
     top: -40px;
