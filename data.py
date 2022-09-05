@@ -18,11 +18,12 @@ def get_playlists(spotify_link, search_algo) -> list:
     and getting Spotify data, will use the search_algo variable
     to determine how exhaustive the search algorithm will be
     """
+
     track_list = get_tracks_from_pl(spotify_link)
-    playlist_list = set()             # make sure no duplicates
-    song_find_count = 3               # initially, find playlists with a random sample of 3 songs
+    playlist_list = set()  # make sure no duplicates
+    song_find_count = 3    # initially, find playlists with a random sample of 3 songs
     i = 0
-    searches = 3 + 2*int(search_algo)
+    searches = 3 + 2 * int(search_algo)
 
     # adjust sample if the track list is too small
     if len(track_list) < song_find_count:
@@ -35,7 +36,8 @@ def get_playlists(spotify_link, search_algo) -> list:
         # append items to the playlist list but only add max of 3 each sample for variety
         added_items = 0
         for item in temp_playlist:
-            if not correct_link_check(item):
+            # remove false links and duplicates
+            if not correct_link_check(item) or item == spotify_link:
                 continue
             playlist_list.add(item)
             added_items += 1
@@ -66,49 +68,55 @@ def get_playlists(spotify_link, search_algo) -> list:
     return new_list
 
 
-# this will get a list of track and their data in a dictionary
 def get_tracks_from_pl(pl_link) -> list:
-    # get playlist id
-    # playlist_link = "https://open.spotify.com/playlist/4YXr1VsIVKxOk5xYrZxGlT"
+    """Grab a list containing dictionaries of track data of name,
+    artist, image
+    """
+
     playlist_id = pl_link.split("/")[-1].split("?")[0]
     results = sp.playlist_items(playlist_id)
     tracks = results['items']
-    # continue if there is more items
+
+    # continue if there is more items because spotipy tries to stop at 100 tracks
     while results['next']:
         results = sp.next(results)
         tracks.extend(results['items'])
-    # create an list and append the track name, artist, and picture
+
+    # create a list and append the track name, artist, and picture
     track_list = []
     for x in tracks:
-        # if image for album doesnt exist, skip because not a song
         if x['track'] is None:
             continue
         if len(x['track']['album']['images']) == 0:
             image_results = ''
         else:
             image_results = x['track']['album']['images'][2]['url']
+
         new_dict = {'Name': x['track']['name'],
                     'Artist': x['track']['artists'][0]['name'],
                     'Image': image_results}
         track_list.append(new_dict)
+
     return track_list
 
 
-# this will get a list of track ids
 def get_track_ids_from_pl(pl_link) -> set:
-    # get playlist id
+    """Grab a list containing only the name + artist of the
+    tracks as an ID
+    example:
+    Despacito Luis Fonsi
+    """
+
     playlist_id = pl_link.split("/")[-1].split("?")[0]
     results = sp.playlist_items(playlist_id)
     tracks = results['items']
-    # continue if there is more items
+    # continue if there is more items because spotipy tries to stop at 100 tracks
     while results['next']:
         results = sp.next(results)
         tracks.extend(results['items'])
-    # create an set and append the track name, artist, and picture
+
     track_id_set = set()
-    # ADD NAME OF SONG AND ARTIST ON SAME LINE
     for x in tracks:
-        # if image for album doesnt exist, skip because not a song
         if x['track'] is None:
             continue
         total_track = x['track']['name'] + ' ' + x['track']['artists'][0]['name']
@@ -116,8 +124,15 @@ def get_track_ids_from_pl(pl_link) -> set:
     return track_id_set
 
 
-# gets all playlist info for 1 playlist into a dictionary
 def get_playlist_info(pl_link) -> dict:
+    """Grab all info for 1 playlist in a dictionary
+    Name - name of playlist
+    Image - url for playlist image
+    Desc - playlist description
+    Count - number of tracks
+    Link - playlist link
+    """
+
     playlist_id = pl_link.split("/")[-1].split("?")[0]
     results = sp.playlist(playlist_id)
     if len(results['images']) == 0:
@@ -132,12 +147,14 @@ def get_playlist_info(pl_link) -> dict:
     return new_dict
 
 
-# gets number of song matches of 2 playlists
 def get_song_matches(pl_link, pl_link_og) -> str:
-    # get both track lists
+    """Find how many songs are similar in
+    comparison to your playlist using the
+    track IDs
+    """
+
     track_list = get_track_ids_from_pl(pl_link)
     track_list_og = get_track_ids_from_pl(pl_link_og)
-    # get the set of the same ids, then get the length
     return str(len(track_list.intersection(track_list_og)))
 
 
@@ -147,10 +164,8 @@ def find_similar_playlists(track_list) -> set:
     for x in track_list:
         total_string += '"' + x['Name'] + '"'
         total_string += '"' + x['Artist'] + '"'
-    # shuffle this set
     found_playlists = get_google_results(total_string)
     random.shuffle(found_playlists)
-    # get rid of duplicates
     return set(found_playlists)
 
 
@@ -159,26 +174,25 @@ def fix_text(text) -> str:
     return TAG_RE.sub('', html_text)
 
 
-# BREAK #
+# Google and link search data functions #
 
-# google search data functions
 
-# gets source code from link
 def get_source_code(link):
     try:
         session = HTMLSession()
-        source = session.get(link)
-        return source
+        html_source = session.get(link)
+        return html_source
     except requests.exceptions.RequestException as e:
         print(e)
 
 
 # gets page of playlists
 def get_google_results(query):
+    """Using a query, Google search and return all link results"""
+
     query = urllib.parse.quote_plus(query)
     response = get_source_code("https://www.google.com/search?q==site%3Aopen.spotify.com%2Fplaylist+" + query)
 
-    # table of any google links
     results = list(response.html.absolute_links)
 
     wanted_domains = ('https://open.spotify.com/playlist')
