@@ -21,7 +21,7 @@ def get_playlists(spotify_link, search_algo) -> list:
 
     track_list = get_tracks_from_pl(spotify_link)
     playlist_list = set()  # make sure no duplicates
-    song_find_count = 3    # initially, find playlists with a random sample of 3 songs
+    song_find_count = 3  # initially, find playlists with a random sample of 3 songs
     i = 0
     searches = 3 + 2 * int(search_algo)
 
@@ -56,12 +56,15 @@ def get_playlists(spotify_link, search_algo) -> list:
 
     # return a list of playlists and respective info
     actual_playlist_list = []
+    track_list_original = get_track_ids_from_pl(spotify_link)
     for x in playlist_list:
-        new_dict = get_playlist_info(x)
+        new_dict = get_playlist_info(x, track_list_original)
         # check if too many tracks
-        if new_dict['Count'] > 250:
+        if new_dict['Count'] > 300:
             continue
-        new_dict['Similar'] = get_song_matches(x, spotify_link)
+        # did not get similar tracks from other
+        if new_dict['Count'] > 100:
+            new_dict['Similar'] = get_song_matches(x, track_list_original)
         actual_playlist_list.append(new_dict)
 
     new_list = sorted(actual_playlist_list, key=lambda a: int(a['Similar']), reverse=True)
@@ -124,7 +127,7 @@ def get_track_ids_from_pl(pl_link) -> set:
     return track_id_set
 
 
-def get_playlist_info(pl_link) -> dict:
+def get_playlist_info(pl_link, track_list_original=None) -> dict:
     """Grab all info for 1 playlist in a dictionary
     Name - name of playlist
     Image - url for playlist image
@@ -144,17 +147,31 @@ def get_playlist_info(pl_link) -> dict:
                 'Desc': fix_text(results['description']),
                 'Count': results['tracks']['total'],
                 'Link': pl_link}
+
+    # spotipy limits songs over 100, so we can save time by calculating similar songs early
+    if new_dict['Count'] <= 100 or track_list_original is not None:
+        tracks = results['tracks']['items']
+
+        track_id_set = set()
+
+        for x in tracks:
+            if x['track'] is None:
+                continue
+            total_track = x['track']['name'] + ' ' + x['track']['artists'][0]['name']
+            track_id_set.add(total_track)
+
+        new_dict['Similar'] = str(len(track_id_set.intersection(track_list_original)))
+
     return new_dict
 
 
-def get_song_matches(pl_link, pl_link_og) -> str:
+def get_song_matches(pl_link, track_list_og) -> str:
     """Find how many songs are similar in
     comparison to your playlist using the
     track IDs
     """
 
     track_list = get_track_ids_from_pl(pl_link)
-    track_list_og = get_track_ids_from_pl(pl_link_og)
     return str(len(track_list.intersection(track_list_og)))
 
 
