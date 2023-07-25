@@ -149,7 +149,7 @@ def get_playlist_info(pl_link, track_list_original=None) -> dict:
                 'Link': pl_link}
 
     # spotipy limits songs over 100, so we can save time by calculating similar songs early
-    if new_dict['Count'] <= 100 or track_list_original is not None:
+    if new_dict['Count'] <= 100 and track_list_original is not None:
         tracks = results['tracks']['items']
 
         track_id_set = set()
@@ -209,6 +209,9 @@ def get_google_results(query):
 
     query = urllib.parse.quote_plus(query)
     response = get_source_code("https://www.google.com/search?q==site%3Aopen.spotify.com%2Fplaylist+" + query)
+
+    if not response:
+        return []
 
     results = list(response.html.absolute_links)
 
