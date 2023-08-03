@@ -120,7 +120,7 @@
 }
 
 body{
-    margin:0;
+    margin:2px;
     font-family: sans-serif;
     background: var(--surface1);
 }
@@ -201,6 +201,13 @@ a:visited {color: black;}   /* visited link */
 a:hover {color: cornflowerblue; text-decoration: underline}  /* mouse over link */
 a:active {color: black;}    /* selected link */
 
+#title {
+    height: 100px;
+    padding-top: 100px;
+    font-family: "Lucida Bright", sans-serif;
+    font-size: 30px;
+}
+
 .center{
     text-align: center;
 }
@@ -222,8 +229,8 @@ a:active {color: black;}    /* selected link */
 .submit_body{
     position: relative;
     top: -25px;
-    height: 175px;
-    border-bottom: solid black;
+    height: 500px;
+    border-bottom: solid #cecdcd;
     margin: 50px 50px 20px;
     text-align: left;
 }
