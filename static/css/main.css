@@ -135,10 +135,10 @@ form input[type=text] {
     padding: 10px;
     font-size: 17px;
     border: 1px solid grey;
-    width: 50%;
+    width: 20%;
     background: #f5f4f4;
-    border-bottom-left-radius: 5px;
-    border-top-left-radius: 5px;
+    border-bottom-left-radius: 30px;
+    border-top-left-radius: 30px;
 }
 
 form button {
@@ -150,8 +150,8 @@ form button {
     border: 1px solid grey;
     border-left: none;
     cursor: pointer;
-    border-bottom-right-radius: 5px;
-    border-top-right-radius: 5px;
+    border-bottom-right-radius: 30px;
+    border-top-right-radius: 30px;
 }
 
 form button:hover {
