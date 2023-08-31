@@ -135,6 +135,7 @@ form input[type=text] {
     padding: 10px;
     font-size: 17px;
     border: 1px solid grey;
+    border-right: none;
     width: 20%;
     background: #f5f4f4;
     border-bottom-left-radius: 30px;
@@ -142,10 +143,10 @@ form input[type=text] {
 }
 
 form button {
-    width: 10%;
+    width: 3%;
     padding: 10px;
-    background: #1c63f1;
-    color: white;
+    background: #f5f4f4;
+    color: var(--surface1);
     font-size: 17px;
     border: 1px solid grey;
     border-left: none;
@@ -155,7 +156,7 @@ form button {
 }
 
 form button:hover {
-    background: #0c57ec;
+    background: #f5f4f4;
 }
 
 /* clear content */
@@ -348,7 +349,7 @@ a:active {color: black;}    /* selected link */
 .loader {
     border: 10px solid #f3f3f3;
     border-radius: 50%;
-    border-top: 10px solid #3498db;
+    border-top: 10px solid #81848b;
     -webkit-animation: spin 2s linear infinite;
     animation: spin 2s linear infinite;
 }
