@@ -131,9 +131,20 @@ form {
     margin: 0 auto;
 }
 
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active{
+    -webkit-box-shadow: 0 0 0 30px #f5f4f4 inset !important;
+}
+input:-webkit-autofill{
+    -webkit-text-fill-color: darkslategray !important;
+}
+
 form input[type=text] {
-    padding: 10px;
+    padding: 15px;
     font-size: 17px;
+    color: darkslategray;
     border: 1px solid grey;
     border-right: none;
     width: 20%;
@@ -142,14 +153,20 @@ form input[type=text] {
     border-top-left-radius: 30px;
 }
 
+::placeholder{
+    color: #c2c1c1;
+}
+
 form button {
     width: 3%;
-    padding: 10px;
+    padding: 15px;
     background: #f5f4f4;
     color: var(--surface1);
     font-size: 17px;
     border: 1px solid grey;
     border-left: none;
+    position: relative;
+    right: 10px;
     cursor: pointer;
     border-bottom-right-radius: 30px;
     border-top-right-radius: 30px;
@@ -250,8 +267,8 @@ a:active {color: black;}    /* selected link */
 }
 
 .submit_stuff{
-    width: 70%;
-    height: 30px;
+    position:relative;
+    width: 50px;
 }
 
 .track {
