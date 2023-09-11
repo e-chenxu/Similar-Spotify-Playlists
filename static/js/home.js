@@ -11,7 +11,7 @@ function hideLoadSearch() {
 function showLoadSearch() {
   const value = document.getElementById("link").value;
   if (value.includes("open.spotify.com/playlist/"))
-    document.getElementById("loader_top").style.display = "block";
+    document.getElementById("search_icon").className = "fa fa-circle-o-notch fa-spin";
 }
 
 
