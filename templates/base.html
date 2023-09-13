@@ -9,7 +9,7 @@
     <title>Spotify Playlist Finder</title>
     {% block head %}{% endblock %}
 </head>
-<body onLoad="hideLoadSearch(); hideLoadRefresh();">
+<body onLoad="hideLoadSearch(); hideLoadRefresh(); localStorage.clear()">
     <div class="submit_body">
     {% block body_input %}{% endblock %}
     </div>

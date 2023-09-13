@@ -255,7 +255,7 @@ a:active {color: black;}    /* selected link */
 .submit_body{
     position: relative;
     top: -25px;
-    height: 500px;
+    height: 370px;
     border-bottom: solid #cecdcd;
     margin: 50px 50px 20px;
     text-align: left;
@@ -363,7 +363,7 @@ a:active {color: black;}    /* selected link */
 
 
 /* loader */
-.loader {
+/*.loader {
     border: 10px solid #f3f3f3;
     border-radius: 50%;
     border-top: 10px solid #81848b;
@@ -413,6 +413,6 @@ a:active {color: black;}    /* selected link */
 @keyframes animatebottom {
     from{ bottom:-100px; opacity:0 }
     to{ bottom:0; opacity:1 }
-}
+}*/
 
 

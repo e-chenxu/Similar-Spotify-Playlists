@@ -2,6 +2,9 @@
 first we have to check if the link is correct, similar to the python function, if it isn't,
 then don't show the loading symbol */
 
+if ( window.history.replaceState ) {
+    window.history.replaceState( null, null, window.location.href );
+}
 
 function hideLoadSearch() {
   document.getElementById("loader_top").style.display = "none";
