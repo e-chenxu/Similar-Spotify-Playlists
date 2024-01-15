@@ -212,7 +212,7 @@ def get_google_results(query):
 
     results = list(response.html.absolute_links)
     wanted_domains = ('https://www.google.com/url?esrc=s&q=&rct=j&sa=U&url=https://open.spotify.com/playlist')
-
+    #a
     new_results = []
     # remove every url except spotify playlists
     for url in results[:]:
