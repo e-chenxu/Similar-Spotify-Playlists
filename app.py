@@ -9,7 +9,6 @@ def index():
     if request.method == "POST":
         spotify_link = request.form.get("link")
         search_algo = request.form.get("box")
-        print(search_algo)
 
         if not data.correct_link_check(spotify_link):
             return '', 204

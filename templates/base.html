@@ -13,9 +13,6 @@
     <div class="submit_body">
     {% block body_input %}{% endblock %}
     </div>
-    {% if your_playlist %}
-        <button class = "refresh_button" onClick="window.location.reload(); showLoadRefresh();">Refresh Playlists</button><div id="loader_bottom" class="loader bottom"></div>
-    {% endif %}
     <div>
         <div>{% block top_column %}{% endblock %}</div>
         <div>{% block bottom_column %}{% endblock %}</div>

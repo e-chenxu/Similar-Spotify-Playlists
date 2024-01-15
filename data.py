@@ -18,7 +18,6 @@ def get_playlists(spotify_link, search_algo) -> list:
     and getting Spotify data, will use the search_algo variable
     to determine how exhaustive the search algorithm will be
     """
-
     track_list = get_tracks_from_pl(spotify_link)
     playlist_list = set()  # make sure no duplicates
     song_find_count = 3  # initially, find playlists with a random sample of 3 songs
@@ -79,7 +78,6 @@ def get_tracks_from_pl(pl_link) -> list:
     playlist_id = pl_link.split("/")[-1].split("?")[0]
     results = sp.playlist_items(playlist_id)
     tracks = results['items']
-
     # continue if there is more items because spotipy tries to stop at 100 tracks
     while results['next']:
         results = sp.next(results)
@@ -209,22 +207,22 @@ def get_google_results(query):
 
     query = urllib.parse.quote_plus(query)
     response = get_source_code("https://www.google.com/search?q==site%3Aopen.spotify.com%2Fplaylist+" + query)
-
     if not response:
         return []
 
     results = list(response.html.absolute_links)
+    wanted_domains = ('https://www.google.com/url?esrc=s&q=&rct=j&sa=U&url=https://open.spotify.com/playlist')
 
-    wanted_domains = ('https://open.spotify.com/playlist')
-
+    new_results = []
     # remove every url except spotify playlists
     for url in results[:]:
         if url.startswith(wanted_domains):
-            continue
-        else:
-            results.remove(url)
-
-    return results
+            new_url = url.replace('https://www.google.com/url?esrc=s&q=&rct=j&sa=U&url=', '')
+            list_url = new_url.split('&')
+            new_url = list_url[0]
+            new_results.append(new_url)
+    print(new_results)
+    return new_results
 
 
 def correct_link_check(link):
