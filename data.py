@@ -220,7 +220,8 @@ def get_google_results(query):
             new_url = url.replace('https://www.google.com/url?esrc=s&q=&rct=j&sa=U&url=', '')
             list_url = new_url.split('&')
             new_url = list_url[0]
-            new_results.append(new_url)
+            clean_url = new_url.split('%')
+            new_results.append(clean_url[0])
     print(new_results)
     return new_results
 
