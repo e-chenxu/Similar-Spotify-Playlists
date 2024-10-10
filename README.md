@@ -1,7 +1,8 @@
 # Similar Spotify Playlists
 A website using Python, Flask and Spotify API to find playlists that are similar to your playlist.
 
-<img src="static/images/demo.gif" width="550">
+<img width="769" alt="{1811B325-CF28-4117-B8EB-2A158900E9C4}" src="https://github.com/user-attachments/assets/5f9d108f-e148-450f-9e5f-7b1186827fcb">
+
 
 ## Description
 This program utilizes the [Spotipy API](https://github.com/plamere/spotipy), in combination with Google Search, to find similar playlists to an inputted Spotify playlist link. It will return a list of similar playlists with data relating to that playlist. The data includes the playlist art, how many tracks it contains, and how many tracks are shared between itself and the inputted playlist. Found playlists will not always be the same, so you might find some well-made playlists if you're lucky!
