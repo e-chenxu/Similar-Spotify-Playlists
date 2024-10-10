@@ -204,7 +204,7 @@ img {
 
 .image_container{
     float: left;
-    margin-right: 15px;
+    margin-right: 27px;
     width: 70px;
     height: 70px;
     border: none;
@@ -214,9 +214,9 @@ img {
 }
 
 a {text-decoration: none;}   /* doesn't underline */
-a:link {color: black;}      /* unvisited link */
-a:visited {color: black;}   /* visited link */
-a:hover {color: cornflowerblue; text-decoration: underline}  /* mouse over link */
+a:link {color: #f8f8f8;}      /* unvisited link */
+a:visited {color: #f8f8f8;}   /* visited link */
+a:hover {color: #b7babe; text-decoration: underline}  /* mouse over link */
 a:active {color: black;}    /* selected link */
 
 #title {
@@ -298,45 +298,64 @@ a:active {color: black;}    /* selected link */
 
 .playlist {
     position: relative;
-    border: solid black;
+    border: solid 1px var(--text2);
     width: 40%;
-    margin: auto auto 20px;
-    height: 170px;
-    border-radius: 5px;
-    }
-    .linktext{
-        display: inline-block;
-        width: calc(80%);
-        font-size: 17px;
-        color: #000;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
-    .description{
-        float: left;
-        border: none;
-        margin: auto;
-        width: 80%;
-        height: 50%;
-        font-size: 15px;
-        color: gray;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
-    .track_num{
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        margin: 1px 1px 1px 1px;
+    margin: 20px auto;
+    height: 180px;
+    border-radius: 8px;
+    background-color: var(--surface2); /* Slightly lighter background for better contrast */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add shadow */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth animation */
+    padding: 15px;
+}
 
-    }
-    .track_num_similar{
-        position: absolute;
-        bottom: 0;
-        right: 0;
-        margin: 1px 1px 1px 1px;
-    }
+.playlist:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    background-color: var(--surface3);
+}
+
+.image_container img {
+    border-radius: 14px;
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+}
+
+.linktext {
+    font-size: 1.2rem;
+    color: white;
+    font-weight: bold;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.description {
+    font-size: 1rem;
+    color: var(--text2);
+    margin-top: 5px;
+    height: 60px;
+    line-height: 1.2;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.track_num, .track_num_similar {
+    font-size: 0.9rem;
+    color: var(--text2);
+    position: absolute;
+    bottom: 10px;
+}
+
+.track_num {
+    left: 10px;
+}
+
+.track_num_similar {
+    right: 10px;
+}
+
 
 .refresh_button{
     margin-left: 20px;
